@@ -1,0 +1,5 @@
+class Listicle
+
+
+
+end
