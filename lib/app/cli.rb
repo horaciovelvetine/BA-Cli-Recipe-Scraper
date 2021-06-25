@@ -1,14 +1,72 @@
 class Cli
 
-    attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu
+    attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu, :run_recipe_app, 
 
-    def initialize
-        puts "Why are you poking around here, you wanna break somethng?"
-        puts self.print_top_menu
-        top_menu_select = gets.strip
-        top_menu
+
+########################################## MAJOR-MENUS ###########################################################
+    #Beings the Recipe Application /
+    def self.run_recipe_app
+        print_welcome_message
+        unused_input = gets
     end
 
+    def self.top_menu
+        print_top_menu
+        top_menu_selection =gets.strip
+        case top_menu_selection
+        when "1" #goes to link_input_menu
+            link_input_menu
+        when "2" #goes to tutorial_about_menu
+            tutorial_about_menu
+        when "3" #about the author
+            about_the_author
+        else #for invalid entries
+            print_invalid_input_message
+            ui_pause
+            linebreak
+            top_menu
+            
+    
+        end
+    end
+
+
+
+
+
+    #represents link menu where user would be either choosing from a list of links 
+    #or user would input thier own link
+    def self.link_input_menu
+        ui_pause
+        print_link_input_menu
+        link_menu_input = gets.strip
+        case link_menu_input
+        when "1"
+            #should look into the listicles list, grab the URL for that the listicle in listicles.all[0] and then pull that link into this function, and then print out that stored listicle item and serve up the interactive_listicle_menu
+        when "2"
+            #ditto
+
+        when "3"
+            #ditto
+        else 
+            link_menu_input = link_to_scrape
+            link_scrape_loading_menu
+            scraper(link_menu_input)
+        end
+    end
+
+
+
+    
+    #intermediate loading screen which displays on initializing a scrape to alert the user work is in progress
+
+
+    
+    
+    
+    
+    
+    ####################################### PRINTED / FORMATTING METHODS ##########################################
     #all of the stored visual representations of each of the various menus
     def self.print_welcome_message
         threebreaks
@@ -79,11 +137,39 @@ class Cli
         linebreak
     end
 
+########################################## SUB-MENUS ###############################################################
+     #automatically returns user to top menu/next menu #
+    def self.tutorial_about_menu
+    
+        Cli.print_tutorial_menu
+        tutorial_menu_input=gets.strip
+        top_menu
 
+    end
 
+    def self.about_the_author
+        print_author_info_menu
+        threebreaks
+        long_pause
+        top_menu
+    end
 
+    def self.link_scrape_loading_menu
+        linebreak
+        loading_pause
+        linebreak
+    end
 
+ ########################################## FORMATTING ##############################################################
     #Formatting elements to help pretty up the CLI and make the app more User Friendly
+        
+    def initialize
+        puts "Why are you poking around here, you wanna break somethng?"
+        long_pause
+        puts "stop it. I dont wanna see you back here."
+        top_menu
+    end
+
     def self.loading_pause
         puts "loading..."
         sleep 0.5
@@ -95,7 +181,6 @@ class Cli
         threebreaks
     end
     
-
     def self.linebreak
         puts "\n"
     end

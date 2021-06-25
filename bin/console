@@ -19,83 +19,11 @@ require "open-uri"
 
 #require_relative "../lib/app"
 
-#welcome 
-Cli.print_welcome_message
-unused_input = gets
-
-#top_menu prints out for user and waits for input
-Cli.print_top_menu
-top_menu_select =gets.strip
-
-top_menu_actions(top_menu_select)
-
-#represents menu after welcome - all roads are supposed to lead back here evenrtually
-
-def self.top_menu_actions(top_menu_select)
-    case top_menu_select
-    when "1"
-        #link input menu
-        Cli.print_link_input_menu
-        link_input_menu_action = gets.strip
-        link_input_menu(link_input_menu_action)
-    when "2"
-        #Functions & Tutorial
-        Cli.print_tutorial_menu
-        tutorial_input=gets.strip
-        top_menu_actions(top_menu_select)
-    when "3"
-        #about the author
-        Cli.print_author_info_menu
-        Cli.linebreak
-        Cli.print_top_menu
-        top_menu_select=gets.strip
-        top_menu_actions(top_menu_select)
-    else
-        #for invalid entries
-        Cli.print_invalid_input_message
-        Cli.ui_pause
-        Cli.linebreak
-        Cli.print_top_menu
-        top_menu_select = gets.strip
-        top_menu_actions(top_menu_select)
-    end
-end
-
-#represents link menu where user would be either choosing from a list of links 
-#or user would input thier own link
-def self.link_input_menu(link_input_menu_action)
-    @link_input_menu_action = link_input_menu_action
-    case @link_input_menu_action
-    when "1"
-        #should look into the listicles list, grab the URL for that the listicle in listicles.all[0] and then pull that link into this function, and then print out that stored listicle item and serve up the interactive_listicle_menu
-    when "2"
-        #ditto
-
-    when "3"
-        #ditto
-    else 
-        link_to_scrape = @link_input_menu_action
-        link_scrape_loading_menu(link_to_scrape)
-    end
-end
-
-#intermediate loading screen which displays on initializing a scrape to alert the user work is in progress
-def self.link_scrape_loading_menu(link_to_scrape)
-    # @link_to_scrape = link_to_scrape
-    Cli.loading_pause
-    Cli.linebreak
-    scraper.scrape_ba_listicle(link_to_scrape)
-    Cli.linebreak
-    Cli.loading_finish
-    interactive_listicle_menu
-end
+Cli.run_recipe_app
+Cli.top_menu
 
 
-
-
-
-
-
+#EXTRA STUFF / CLIPBOARD HERE
 
 
 #main screen displying the top level print out of all listicle information
