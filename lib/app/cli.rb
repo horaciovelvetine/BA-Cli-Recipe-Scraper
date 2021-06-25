@@ -30,16 +30,11 @@ class Cli
         end
     end
 
-
-
-
-
-    #represents link menu where user would be either choosing from a list of links 
-    #or user would input thier own link
     def self.link_input_menu
         ui_pause
         print_link_input_menu
         link_menu_input = gets.strip
+        @link_menu_input =link_menu_input
         case link_menu_input
         when "1"
             #should look into the listicles list, grab the URL for that the listicle in listicles.all[0] and then pull that link into this function, and then print out that stored listicle item and serve up the interactive_listicle_menu
@@ -49,22 +44,11 @@ class Cli
         when "3"
             #ditto
         else 
-            link_menu_input = link_to_scrape
+            link_to_scrape = @link_menu_input
             link_scrape_loading_menu
-            scraper(link_menu_input)
+            Scraper.scrape_ba_listicle(link_to_scrape)
         end
     end
-
-
-
-    
-    #intermediate loading screen which displays on initializing a scrape to alert the user work is in progress
-
-
-    
-    
-    
-    
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
     #all of the stored visual representations of each of the various menus
@@ -72,16 +56,18 @@ class Cli
         threebreaks
         ui_pause
         puts "========================================"
+        puts "========================================"
         linebreak
         puts "Welcome to Brief Bon Ap Listicle Scraper"
         linebreak
         puts "========================================"
         puts "=============== V 0.0.1 ================"
-        ui_pause
         threebreaks
+        ui_pause
         puts "========================================"
         puts "    Press any key & enter to continue   "
         puts "========================================"
+        linebreak
         ui_pause
     end
 
@@ -92,13 +78,10 @@ class Cli
         puts "          1. Link Input Menu            "
         puts "          2. Function / Tutorial        "
         puts "          3. About the Author           "
-        Cli.linebreak
+        linebreak
         puts "========================================"
+        puts "Press corresponding number then enter"
         puts "========================================"
-        ui_pause
-        threebreaks
-        puts "  Press the corresponding # & enter...  "
-        ui_pause
     end
 
     def self.print_link_input_menu
@@ -123,7 +106,7 @@ class Cli
         ui_pause
         threebreaks
         puts "======================================================"       
-        puts " Brief Bon Ap Listicle Scraper by: Horacio Velvetine. "
+        puts "     Bon Ap Listicle Scraper by: Horacio Velvetine    "
         ui_pause
         puts "Find Me on GitHub: https://github.com/horaciovelvetine"
         ui_pause
@@ -133,8 +116,7 @@ class Cli
         puts "======================================================" 
         threebreaks
         long_pause
-        puts "          Press any key & enter to continue           "
-        linebreak
+        long_pause
     end
 
 ########################################## SUB-MENUS ###############################################################
@@ -161,8 +143,7 @@ class Cli
     end
 
  ########################################## FORMATTING ##############################################################
-    #Formatting elements to help pretty up the CLI and make the app more User Friendly
-        
+    #Formatting elements to help pretty up the CLI and make the app more User Friendly    
     def initialize
         puts "Why are you poking around here, you wanna break somethng?"
         long_pause
