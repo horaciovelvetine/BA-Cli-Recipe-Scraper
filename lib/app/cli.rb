@@ -49,6 +49,13 @@ class Cli
             Scraper.scrape_ba_listicle(link_to_scrape)
         end
     end
+
+    def self.explore_listicle_menu
+        Listicle.print_explore_listicle_menu
+    
+
+
+    end
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
     #all of the stored visual representations of each of the various menus
@@ -72,6 +79,7 @@ class Cli
     end
 
     def self.print_top_menu
+        linebreak
         puts "============== Top Menu ================"
         puts "========================================"
         linebreak
@@ -82,6 +90,7 @@ class Cli
         puts "========================================"
         puts "Press corresponding number then enter"
         puts "========================================"
+        linebreak
     end
 
     def self.print_link_input_menu
@@ -96,6 +105,7 @@ class Cli
         linebreak
         puts "================================================" 
         puts "================================================" 
+        linebreak
     end
 
     def self.print_tutorial_menu
@@ -157,7 +167,7 @@ class Cli
     end
 
     def self.loading_finish
-        puts "Loading Complete! List incoming"
+        puts "Loading Complete!"
         ui_pause
         threebreaks
     end
