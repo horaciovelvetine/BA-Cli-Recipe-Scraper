@@ -51,7 +51,7 @@ class Cli
     end
 
     def self.explore_listicle_menu
-        Listicle.print_explore_listicle_menu
+       print_explore_listicle_menu
     
 
 
@@ -127,6 +127,10 @@ class Cli
         threebreaks
         long_pause
         long_pause
+    end
+
+    def print_explore_listicle_menu
+        puts "farts and rainbows run the world, not girls bey...."
     end
 
 ########################################## SUB-MENUS ###############################################################

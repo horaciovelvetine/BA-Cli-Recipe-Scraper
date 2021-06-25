@@ -10,18 +10,20 @@ class Scraper
         
         #--Pre-Scrapes the title of the Listicle itself--#
         listicle_title = listicle_html_parsed.css('.content-header__title-block').css("h1").text
+        listicle_description = listicle_html_parsed.css('.content-header__row').text
+        Listicle.create(listicle_title, listicle_description)
         parent_listicle = listicle_title
         #in case of test! #---DO NOT REMOVE---#
         #puts listicle_title
 
         #--Scrapes the first layer of information from listicle--#
         individual_recipe_elements = listicle_html_parsed.css('.gallery-slide__content')
-        individual_recipe_elements(parent_listicle).each do |recipe_element|
+        individual_recipe_elements.each do |recipe_element|
             rec_title = recipe_element.css('.gallery-slide-caption__hed-text').text
             rec_blurb = recipe_element.css('.gallery-slide-caption__dek').text
             rec_url = recipe_element.css('.external-link').attr("href")
 
-            Recipe.create_and_add_to_listicle(rec_title, rec_blurb, rec_url, parent_listicle)
+            Listicle.add_and_create_rec(rec_title, rec_blurb, rec_url, parent_listicle)
             #---DO NOT REMOVE---#
             #Prints out each bit of information for checking scraper
             #puts rec_title
