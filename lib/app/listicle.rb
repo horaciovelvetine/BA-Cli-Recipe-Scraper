@@ -1,7 +1,7 @@
 class Listicle
 
     @@all = []
-    attr_reader :print_explore_listicle_menu
+    attr_accessor :recipe_collection, :create_rec
 
     def self.all
         @@all
@@ -13,17 +13,16 @@ class Listicle
     
     def self.create(listicle_title, listicle_description)
         @listicle_title = listicle_title
-        @listicle_description =listicle_description
-        recipe_list = []
+        @listicle_description = listicle_description
+        @recipe_collection = []
         save
     end
 
 
-    
-    def self.add_and_create_rec(rec_title, rec_blurb, rec_url) ,#parent_listicle)
-        Recipe.create(rec_title, rec_blurb, rec_url) ,#parent_listicle)
+    # def create_rec(rec_title, rec_blurb, rec_url)
+    #     Recipe.create(rec_title, rec_blurb, rec_url)
+    # end
 
-        
-    end
+    
 
 end

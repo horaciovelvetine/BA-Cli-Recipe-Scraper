@@ -51,10 +51,8 @@ class Cli
     end
 
     def self.explore_listicle_menu
-       print_explore_listicle_menu
-    
-
-
+        puts "made it here somehow"
+        linebreak
     end
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
