@@ -1,7 +1,7 @@
 class Listicle
 
     @@all = []
-    attr_accessor :recipe_collection, :create_rec
+    attr_reader :name, 
 
     def self.all
         @@all
@@ -14,14 +14,25 @@ class Listicle
     def self.create(listicle_title, listicle_description)
         @listicle_title = listicle_title
         @listicle_description = listicle_description
-        @recipe_collection = []
         save
     end
 
+    def title=(listicle_title)
+        @listicle_title = listicle_title
+    end
 
-    # def create_rec(rec_title, rec_blurb, rec_url)
-    #     Recipe.create(rec_title, rec_blurb, rec_url)
-    # end
+
+    
+    def add_rec(recipe)
+        recipe.listicle = self unless recipe.listicle != nil
+    end
+
+    def recipes
+        Recipe.all.select do |recipe|
+            recipe.listicle = self
+        end
+    end
+
 
     
 

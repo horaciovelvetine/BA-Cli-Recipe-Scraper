@@ -1,8 +1,10 @@
 class Recipe
 
     @@all = []
-    attr_accessor :rec_title, :rec_blurb, :rec_url, :rec_ingredients_and_quantities, :rec_steps
+    attr_reader :title, :blurb, :url, :listicle
 
+
+    #Class
     def self.all
         @@all
     end
@@ -12,23 +14,37 @@ class Recipe
         @rec_blurb = rec_blurb
         @rec_url = rec_url
         @parent_listicle = parent_listicle
-        #add_rec_to_listicle(@parent_listicle)
-        self
+        save
+        # self
     end
 
 
-    def add_more_info_to_rec(rec_ingredient_quantity, rec_ingredient, rec_steps)
-        @rec_ingredients_and_quantities = {}
-        @rec_steps =[]
+
+
+
+    #Instance
+    def self.save
+        @@all << self
     end
 
-    # def add_rec_to_listicle(parent_listicle)
-    #     if listicle.recipe_collection.include?("#{parent_listicle}")
-    #         recipe_collection << self
-    #     else
-    #         puts "invalid test error, james what are you doing now."
-    #     end
-    # end
+    def title=(rec_title)
+        @rec_title = rec_title
+    end
+
+    def blurb=(rec_blurb)
+        @rec_blurb = rec_blurb
+    end
+
+    def url=(rec_url)
+        @rec_url = rec_url
+    end
+    
+    def listicle=(parent_listicle)
+        @parent_listicle = parent_listicle
+        Listicle.add_rec(self)
+    end
+
+
 
 
 end

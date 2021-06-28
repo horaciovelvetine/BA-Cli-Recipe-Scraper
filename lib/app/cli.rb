@@ -51,7 +51,7 @@ class Cli
     end
 
     def self.explore_listicle_menu
-        puts "made it here somehow"
+        print_explore_listicle_menu
         linebreak
     end
     
@@ -127,8 +127,8 @@ class Cli
         long_pause
     end
 
-    def print_explore_listicle_menu
-        puts "farts and rainbows run the world, not girls bey...."
+    def self.print_explore_listicle_menu
+        
     end
 
 ########################################## SUB-MENUS ###############################################################
@@ -200,6 +200,8 @@ class Cli
     def self.long_pause
         sleep 3.0
     end
+
+    
 end
 
 

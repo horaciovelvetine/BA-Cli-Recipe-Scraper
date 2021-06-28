@@ -29,7 +29,7 @@ class Scraper
             rec_url = recipe_element.css('.external-link').attr("href")
 
             Recipe.create(rec_title, rec_blurb, rec_url, parent_listicle)
-            Listicle.recipe_collection << self
+            # Listicle.recipe_collection << self
 
             #---DO NOT REMOVE---#
             #Prints out each bit of information
