@@ -37,23 +37,18 @@ class Scraper
             #puts rec_blurb
             #puts "#{rec_url}"
             end
-            Cli.loading_finish
-            Cli.ui_pause
-            Cli.explore_listicle_menu
+
+            #-- REMOVE FOR Re-flow of application - redirecting path.
+            # Cli.loading_finish
+            # Cli.ui_pause
+            # Cli.explore_listicle_menu
         end
     end
 
 
-    # def self.scrape_ba_more_info(more_info_url)
-    #     mi_url = more_info_url
-    #     html = open(mi_url)
-    #     more_info_parsed = Nokogiri::HTML(html)
+end
 
-    #     more_info_parsed = recipe_more_parsed.css('TAG INFO THAT PULLS')
-    #     more_info_parsed.each do |mi_element|
-    #         rec_rating = mi_element.css('pulls out the # rating')
-    #         rec_instructions = mi_element.css('pulls out steps')
-    #         rec_ingredient_quantity = mi_element.css('just quantity of ingredient')
-    #         rec_ingredient = mi_element.css('just ingredients themselves')
-    #     end   
-    # end
+
+
+
+

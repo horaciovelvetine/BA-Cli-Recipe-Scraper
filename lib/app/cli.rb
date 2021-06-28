@@ -51,8 +51,7 @@ class Cli
     end
 
     def self.explore_listicle_menu
-        print_explore_listicle_menu
-        linebreak
+        
     end
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################

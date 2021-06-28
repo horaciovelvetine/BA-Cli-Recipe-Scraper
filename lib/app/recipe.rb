@@ -46,6 +46,8 @@ class Recipe
         Listicle.add_rec(self)
     end
 
+    def 
+
 
 
 

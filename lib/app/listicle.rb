@@ -1,8 +1,10 @@
 class Listicle
 
     @@all = []
-    attr_reader :name, 
+    attr_reader :title, :description
 
+
+    #Class
     def self.all
         @@all
     end
@@ -17,10 +19,14 @@ class Listicle
         save
     end
 
+    #Instance
     def title=(listicle_title)
         @listicle_title = listicle_title
     end
 
+    def description=(listicle_description)
+        @listicle_description = listicle_description
+    end
 
     
     def add_rec(recipe)
@@ -33,7 +39,8 @@ class Listicle
         end
     end
 
+    def print_listicle
+        
+    end
 
-    
-
-end
+en
