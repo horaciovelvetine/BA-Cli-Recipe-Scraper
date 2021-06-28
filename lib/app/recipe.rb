@@ -18,14 +18,16 @@ class Recipe
         # self
     end
 
+    def self.save
+        @@all << self
+    end
+
 
 
 
 
     #Instance
-    def self.save
-        @@all << self
-    end
+
 
     def title=(rec_title)
         @rec_title = rec_title

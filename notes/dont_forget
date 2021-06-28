@@ -1,1 +1,10 @@
 ##Additional Notes / Reminders
+ 1. Listicles have many recipes have many ingredients. ---- But Listicles dont need to reference ingredients.... UNLESS to add the Shopping cart feature. Listicle.Ingredients may be the "BTS" call that makes the shopping cart function happen. 
+
+ 2. Shopping carts have many ingredients 
+
+ 3. Ingredients will be collected in a hash, that hash is Key = Quantity and Value = Ingredient_ name 
+
+ 4. Recipe.steps should return an array by of indexed steps, steps should correlate with index #. 
+
+ 5. 
