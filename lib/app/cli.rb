@@ -3,7 +3,7 @@ class Cli
     attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu, :run_recipe_app
 
 
-########################################## MAJOR-MENUS ###########################################################
+    ########################################## MAJOR-MENUS #######################################################
     #Beings the Recipe Application /
     def self.run_recipe_app
         print_welcome_message
@@ -51,7 +51,8 @@ class Cli
     end
 
     def self.explore_listicle_menu(parent_listicle)
-        
+        print_listicle_explore_menu(parent_listicle)
+
     end
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
@@ -131,21 +132,35 @@ class Cli
         long_pause
     end
 
-    def self.listicle_explore_header(listicle)
+    def self.print_listicle_explore_menu(parent_listicle)
         clear_cli
         threebreaks
+        puts "==================================================================="
+        puts "                  A Brief Overview of Listicle:                    "   
+        puts parent_listicle.title
+        puts "==================================================================="
+        puts "==================================================================="
+        linebreak
+        puts parent_listicle.description 
+        linebreak
+        puts "==================================================================="
+        ui_pause
+        linebreak
+        puts "                     Now to the good part...                       "
+        puts "==================================================================="
+        recipe_list_print(parent_listicle)
     end
 
+    def self.
 
-########################################## SUB-MENUS ###############################################################
+
+    ######################################### SUB-MENUS ###########################################################
      #automatically returns user to top menu/next menu #
 
-    def self.tutorial_about_menu
-    
-        Cli.print_tutorial_menu
+    def tutorial_about_menu
+        print_tutorial_menu
         tutorial_menu_input=gets.strip
         top_menu
-
     end
 
     def self.about_the_author
@@ -161,7 +176,16 @@ class Cli
         linebreak
     end
 
- ########################################## FORMATTING ##############################################################
+    def self.recipe_list_print(parent_listicle)
+        counter = 1
+        parent_listicle.recipes.each do |recipe|
+            
+            puts "#{counter}: #{recipe.title}"
+            counter += 1
+        end
+    end
+
+    ########################################## FORMATTING #########################################################
     #Formatting elements to help pretty up the CLI and make more User Friendly    
     def initialize
         puts "Why are you poking around here, you wanna break somethng?"
@@ -220,7 +244,7 @@ class Cli
 
 
     
-end
+ end
 
 
 

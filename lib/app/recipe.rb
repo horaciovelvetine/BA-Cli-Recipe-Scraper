@@ -27,22 +27,10 @@ class Recipe
         @@all << self
     end
 
-    def title=(rec_title)
-        @rec_title = rec_title
+    def self.title 
+        @rec_title
     end
 
-    def blurb=(rec_blurb)
-        @rec_blurb = rec_blurb
-    end
-
-    def url=(rec_url)
-        @rec_url = rec_url
-    end
-    
-    # def listicle=(parent_listicle)
-    #     @parent_listicle = parent_listicle
-    #     Listicle.add_rec(self)
-    # end
 
 
 

@@ -27,24 +27,19 @@ class Listicle
         listicle
     end
 
-
-    def title=(listicle_title)
-        @listicle_title = listicle_title
+    def title 
+        @listicle_title
     end
 
-    def description=(listicle_description)
-        @listicle_description = listicle_description
-    end
-
-    
-    def add_rec(recipe)
-        recipe.listicle = self unless recipe.listicle != nil
+    def description
+        @listicle_description
     end
 
     def recipes
-        Recipe.all.select do |recipe|
-            recipe.listicle = self
-        end
+        @recipe_collection
     end
+    
+
+
 
 end

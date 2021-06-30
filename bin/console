@@ -42,3 +42,42 @@ Cli.top_menu
     #         rec_ingredient = mi_element.css('just ingredients themselves')
     #     end   
     # end
+
+
+#Additional Methods not needed by the Listicle class (maybe??)
+    # def title=(listicle_title)
+#         @listicle_title = listicle_title
+#     end
+
+#     def description=(listicle_description)
+#         @listicle_description = listicle_description
+#     end
+
+    
+#     def add_rec(recipe)
+#         recipe.listicle = self unless recipe.listicle != nil
+#     end
+
+#     def recipes
+#         Recipe.all.select do |recipe|
+#             recipe.listicle = self
+#         end
+#     end
+
+#Additional Methods not needed by the Recipe class (maybe??)
+    # def title=(rec_title)
+    #     @rec_title = rec_title
+    # end
+
+    # def blurb=(rec_blurb)
+    #     @rec_blurb = rec_blurb
+    # end
+
+    # def url=(rec_url)
+    #     @rec_url = rec_url
+    # end
+    
+    # # def listicle=(parent_listicle)
+    # #     @parent_listicle = parent_listicle
+    # #     Listicle.add_rec(self)
+    # # end
