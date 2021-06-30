@@ -1,10 +1,18 @@
 class Listicle
 
     @@all = []
-    attr_reader :title, :description
+    attr_reader :title, :description, :recipe_collection
 
 
     #Class
+
+    def initialize(listicle_title, listicle_description)
+        @listicle_title = listicle_title
+        @listicle_description = listicle_description
+        @recipe_collection = []
+    end
+
+   
     def self.all
         @@all
     end
@@ -14,12 +22,12 @@ class Listicle
     end
     
     def self.create(listicle_title, listicle_description)
-        @listicle_title = listicle_title
-        @listicle_description = listicle_description
-        save
+        listicle = Listicle.new(listicle_title, listicle_description)
+        self.save
+        listicle
     end
 
-    #Instance
+
     def title=(listicle_title)
         @listicle_title = listicle_title
     end
@@ -39,8 +47,4 @@ class Listicle
         end
     end
 
-    def print_listicle
-        
-    end
-
-en
+end

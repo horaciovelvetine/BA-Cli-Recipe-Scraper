@@ -9,11 +9,16 @@ class Recipe
         @@all
     end
 
-    def self.create(rec_title, rec_blurb, rec_url, parent_listicle)
+    def initialize(rec_title, rec_blurb, rec_url, parent_listicle)
         @rec_title = rec_title
         @rec_blurb = rec_blurb
         @rec_url = rec_url
         @parent_listicle = parent_listicle
+    end
+
+    def self.create(rec_title, rec_blurb, rec_url, parent_listicle)  
+        Recipe.new(rec_title, rec_blurb, rec_url, parent_listicle)
+        parent_listicle.recipe_collection << self 
         save
         # self
     end
@@ -21,13 +26,6 @@ class Recipe
     def self.save
         @@all << self
     end
-
-
-
-
-
-    #Instance
-
 
     def title=(rec_title)
         @rec_title = rec_title
@@ -41,12 +39,11 @@ class Recipe
         @rec_url = rec_url
     end
     
-    def listicle=(parent_listicle)
-        @parent_listicle = parent_listicle
-        Listicle.add_rec(self)
-    end
+    # def listicle=(parent_listicle)
+    #     @parent_listicle = parent_listicle
+    #     Listicle.add_rec(self)
+    # end
 
-    def 
 
 
 

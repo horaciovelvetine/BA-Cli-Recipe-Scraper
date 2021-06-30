@@ -1,6 +1,6 @@
 class Cli
 
-    attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu, :run_recipe_app, 
+    attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu, :run_recipe_app
 
 
 ########################################## MAJOR-MENUS ###########################################################
@@ -50,7 +50,7 @@ class Cli
         end
     end
 
-    def self.explore_listicle_menu
+    def self.explore_listicle_menu(parent_listicle)
         
     end
     
@@ -58,6 +58,8 @@ class Cli
     #all of the stored visual representations of each of the various menus
     def self.print_welcome_message
         threebreaks
+        ui_pause
+        clear_cli
         ui_pause
         puts "========================================"
         puts "========================================"
@@ -76,6 +78,7 @@ class Cli
     end
 
     def self.print_top_menu
+        clear_cli
         linebreak
         puts "============== Top Menu ================"
         puts "========================================"
@@ -91,6 +94,7 @@ class Cli
     end
 
     def self.print_link_input_menu
+        clear_cli
         linebreak
         puts "================= Link Menu ===================="
         puts "================================================" 
@@ -110,6 +114,7 @@ class Cli
     end
 
     def self.print_author_info_menu
+        clear_cli
         ui_pause
         threebreaks
         puts "======================================================"       
@@ -126,12 +131,15 @@ class Cli
         long_pause
     end
 
-    def self.print_explore_listicle_menu
-        
+    def self.listicle_explore_header(listicle)
+        clear_cli
+        threebreaks
     end
+
 
 ########################################## SUB-MENUS ###############################################################
      #automatically returns user to top menu/next menu #
+
     def self.tutorial_about_menu
     
         Cli.print_tutorial_menu
@@ -154,7 +162,7 @@ class Cli
     end
 
  ########################################## FORMATTING ##############################################################
-    #Formatting elements to help pretty up the CLI and make the app more User Friendly    
+    #Formatting elements to help pretty up the CLI and make more User Friendly    
     def initialize
         puts "Why are you poking around here, you wanna break somethng?"
         long_pause
@@ -193,12 +201,23 @@ class Cli
         puts "Invalid Input: Reconsider and Try Again"
         puts "=============================================="
         linebreak
-        ui_pause
+        sleep 2.0
+
     end
 
     def self.long_pause
         sleep 3.0
     end
+
+    def self.clear_cli
+        linebreak
+        system("clear")
+    end
+
+    def exit
+        system("exit!")
+    end
+
 
     
 end

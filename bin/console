@@ -4,10 +4,7 @@ require "bundler/setup"
 #require "Recipe_Listicle_Scraper"
 require_relative "../config/environment"
 require_all 'lib/app'
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
 
-# (If you use this, don't forget to add pry to your Gemfile!)
 require "pry"
 require "irb"
 require "nokogiri"
@@ -15,9 +12,6 @@ require "open-uri"
 
 # Pry.start
 # IRB.start(__FILE__)
-# require "../lib"
-
-#require_relative "../lib/app"
 
 Cli.run_recipe_app
 Cli.top_menu
