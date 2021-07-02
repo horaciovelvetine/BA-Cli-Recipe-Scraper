@@ -53,15 +53,43 @@ class Cli
         explore_listicle_menu_selection = gets.strip
         case explore_listicle_menu_selection
         when "1" #More Info 
+            display_more_info_menu(parent_listicle)
         when "2" #Add recipe to shopping list
+            ask_which_recipe_to_add(parent_listicle)
         when "3" #see shopping list
+            shopping_list_menu
         when "4" #go to top menu
+            top_menu
         when "5" #exit app
             exit_app
         when "6" #hidden hackers menu
+            puts "welcome to the thunderdome"
+            exit_app
+        else
+            print_invalid_input_message
+            explore_listicle_menu(parent_listicle)
         end
         
     end
+
+    def self.display_more_info_menu(parent_listicle)
+        print_ask_for_which
+        #getting an int to select a member of an array to operate one
+        more_info_menu_selection = gets-1
+        clear_cli
+        print_more_info(parent_listicle, more_info_menu_selection)            
+    end
+
+    def self.shopping_list_menu
+        #displays the current shopping list which may be nil and outputs that information, routes user back to the link inputs menut
+
+
+
+
+
+        link_input_menu
+    end
+
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
     #all of the stored visual representations of each of the various menus
@@ -201,6 +229,15 @@ class Cli
         long_pause
     end
 
+    def self.print_ask_for_which
+        puts "~~ Please input the recipe number you'd like to address ~~" 
+    end
+
+    def self.print_more_info(parent_listicle, selection)
+        get_more_info(parent_listicle, selection)
+        puts "Here lies the menu I have yet to work out really"
+    end
+
 
 
     ######################################### SUB-MENUS ###########################################################
@@ -282,7 +319,7 @@ class Cli
         system("clear")
     end
 
-    def exit_app
+    def self.exit_app
         system("exit!")
     end
 
@@ -304,6 +341,12 @@ class Cli
 
     end
 
+    def self.get_more_info(parent_listicle, selection)
+        more_info_link = parent_listicle.recipe_collection(selection).url
+        parent_recipe = parent_listicle.recipe_collection(selection)
+        Scraper.more_info(more_info_link, parent_recipe)
+    
+    end
 
 
 

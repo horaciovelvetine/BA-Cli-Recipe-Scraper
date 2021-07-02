@@ -46,6 +46,37 @@ class Scraper
         Cli.explore_listicle_menu(parent_listicle)
     end
 
+    def self.get_more_info(more_info_link, parent_recipe)
+        url = more_info_link
+        html = open(url)
+        recipe_more_info_parsed = Nokogiri::HTML(html)
+
+        #Attributes to set:
+        # rating, total_prep_time, num_servings, author. ingredients[], steps[]
+
+
+
+        #classes (as narrow scoped as possible, zoom out + add'l tags??)
+        #@rating: sc-pNWdM sc-jrsJWt sc-bgPuHN lfZoIg kVXRTs isYfga .text
+        #@total_time_to_prepare: sc-pNWdM sc-jrsJWt sc-QBqQR lfZoIg dvVxgI .text
+        #@num_of_servings: sc-pNWdM sc-jrsJWt sc-czWueg lfZoIg dvVxgI flNKQv .text
+        #@author: sc-pNWdM sc-jrsJWt sc-kEqXSa sc-fxFQKN lfZoIg gbRvFD gXETNs crwdyJ byline__name-link button .text
+
+
+
+        #ingredients (sc-fYRKEF kSBiAJ)
+            #amount (sc-pNWdM sc-jrsJWt sc-jHCTGH lfZoIg cKBuBY ipiKWu)
+            #ingredient_name (sc-pNWdM sc-jrsJWt sc-gfPHdM lfZoIg cKBuBY OSpFc)
+
+        #instructions (todos: sc-pNWdM sc-cBaREX bSrwjR)
+            #indiv (sc-pNWdM sc-jrsJWt sc-iONbRl lfZoIg cfXWxZ efQlxQ)('p') .text
+
+
+
+
+
+    end
+
 
 end
 

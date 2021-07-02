@@ -18,6 +18,8 @@ class Recipe
         @blurb = rec_blurb
         @url = rec_url
         @parent_listicle = parent_listicle
+        @ingredients = []
+        @instructions = []
     end
 
     def self.create(rec_title, rec_blurb, rec_url, parent_listicle)  
