@@ -50,7 +50,17 @@ class Cli
 
     def self.explore_listicle_menu(parent_listicle)
         print_listicle_explore_menu(parent_listicle)
-
+        explore_listicle_menu_selection = gets.strip
+        case explore_listicle_menu_selection
+        when "1" #More Info 
+        when "2" #Add recipe to shopping list
+        when "3" #see shopping list
+        when "4" #go to top menu
+        when "5" #exit app
+            exit_app
+        when "6" #hidden hackers menu
+        end
+        
     end
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
@@ -109,15 +119,18 @@ class Cli
     end
 
     def self.print_tutorial_menu
+        clear_cli
+        puts "======================================================================"
         puts "A long time ago (circa 2006) the internet was changer forever"
         puts "the #{make_fun_of_buzzfeed} buzzfeed began clogging the internet with"
         puts "quizzes, articles, and best of all ... the Listicle ..."
-        ui_pause
+        long_pause
+        threebreaks
         puts "Now many years later, aspiring chefs are forced to sift through"
-        puts "these Listicles searching for something that speaks to thier individual"
-        puts "food souls."
-        ui_pause
-        linebreak
+        puts "these Listicles searching for something that speaks to thier"
+        puts "individual food souls."
+        long_pause
+        threebreaks
         puts "this (temporarily) ends today"
         linebreak
         puts "Use this scraper with any ^^valid Bon Apetit(e?) listicle"
@@ -127,11 +140,13 @@ class Cli
         puts "or honestly just fluff.... sorry BA..... that often plague"
         puts "these types of listicles."
         linebreak
-        ui_pause
+        long_pause
         threebreaks
+        puts "======================================================================" 
         puts "^^Valid articles are normally something theyve tweeted"
         puts "Look for titles like, these X recipes that make our readers"
         puts "go OHWOWOWOWOWOWOW SO GOOD, MUCH TAASTTTTTTY"
+        puts "======================================================================"
         long_pause
     end
 
@@ -176,11 +191,14 @@ class Cli
         format_recipe_printer(parent_listicle)
         puts "==================================================================="
         puts "==================================================================="
+        long_pause
         linebreak
         puts "Select from the following options:"
+        linebreak
         puts "1. More Info  2. Make addition to Shopping List  3. See Shopping List"
         puts "4. Jump to Link/Listicle Input 5. Exit "
         linebreak
+        long_pause
     end
 
 
@@ -188,7 +206,7 @@ class Cli
     ######################################### SUB-MENUS ###########################################################
      #automatically returns user to top menu/next menu #
 
-    def tutorial_about_menu
+    def self.tutorial_about_menu
         print_tutorial_menu
         tutorial_menu_input=gets.strip
         top_menu
@@ -196,8 +214,7 @@ class Cli
 
     def self.about_the_author
         print_author_info_menu
-        threebreaks
-        long_pause
+        about_the_author_input=gets.strip
         top_menu
     end
 
@@ -265,7 +282,7 @@ class Cli
         system("clear")
     end
 
-    def exit
+    def exit_app
         system("exit!")
     end
 
