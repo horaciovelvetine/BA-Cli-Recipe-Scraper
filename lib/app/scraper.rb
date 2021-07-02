@@ -20,8 +20,7 @@ class Scraper
         #---Sets scraper to creating individual recipes---#
         individual_element_scrape(listicle_html_parsed, parent_listicle)
 
-        Cli.explore_listicle_menu(parent_listicle)
-
+        
 
     end
 
@@ -39,10 +38,12 @@ class Scraper
             # puts rec_title
             # puts rec_blurb
             # puts "#{rec_url}"
+            
 
         end
+        # binding.pry
         Cli.loading_finish
-        Cli.ui_pause
+        Cli.explore_listicle_menu(parent_listicle)
     end
 
 

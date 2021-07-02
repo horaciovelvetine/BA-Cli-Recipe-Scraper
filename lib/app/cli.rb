@@ -1,7 +1,5 @@
 class Cli
 
-    attr_reader :loading_pause, :linebreak, :print_invalid_input_message, :ui_pause, :threebreaks, :loading_pause, :print_welcome_message, :print_top_menu, :print_link_input_menu, :print_tutorial_menu, :print_author_info_menu, :run_recipe_app
-
 
     ########################################## MAJOR-MENUS #######################################################
     #Beings the Recipe Application /
@@ -62,18 +60,18 @@ class Cli
         ui_pause
         clear_cli
         ui_pause
-        puts "========================================"
-        puts "========================================"
+        puts "================================================"
+        puts "================================================"
         linebreak
-        puts "Welcome to Brief Bon Ap Listicle Scraper"
+        puts "     Welcome to Brief Bon Ap Listicle Scraper"
         linebreak
-        puts "========================================"
-        puts "=============== V 0.0.1 ================"
+        puts "================================================"
+        puts "=================== V 0.0.1 ===================="
         threebreaks
         ui_pause
-        puts "========================================"
-        puts "    Press any key & enter to continue   "
-        puts "========================================"
+        puts "================================================"
+        puts "             Press any key to continue"
+        puts "================================================"
         linebreak
         ui_pause
     end
@@ -81,43 +79,68 @@ class Cli
     def self.print_top_menu
         clear_cli
         linebreak
-        puts "============== Top Menu ================"
-        puts "========================================"
+        puts "================== TOP MENU ===================="
+        puts "================================================"
         linebreak
-        puts "          1. Link Input Menu            "
-        puts "          2. Function / Tutorial        "
-        puts "          3. About the Author           "
+        puts "              1. Link Input Menu"
+        puts "              2. Function / Tutorial"
+        puts "              3. About the Author"
         linebreak
-        puts "========================================"
-        puts "Press corresponding number then enter"
-        puts "========================================"
+        puts "================================================"
+        puts "     Press corresponding number then enter"
+        puts "================================================"
         linebreak
     end
 
     def self.print_link_input_menu
         clear_cli
         linebreak
-        puts "================= Link Menu ===================="
-        puts "================================================" 
+        puts "================= Link Input Menu ===================="
+        puts "======================================================" 
         linebreak
         puts "     Paste your link and hit enter to begin     "
         puts "                     -or-                       "
         puts "    Or Select from already previous listicles   "
         puts "          *coming in verseion 0.1.0             "
         linebreak
-        puts "================================================" 
-        puts "================================================" 
+        puts "======================================================"
+        puts "======================================================"
         linebreak
     end
 
     def self.print_tutorial_menu
-        "Here lies the tutorial I will type at the end, because its too damn early"
+        puts "A long time ago (circa 2006) the internet was changer forever"
+        puts "the #{make_fun_of_buzzfeed} buzzfeed began clogging the internet with"
+        puts "quizzes, articles, and best of all ... the Listicle ..."
+        ui_pause
+        puts "Now many years later, aspiring chefs are forced to sift through"
+        puts "these Listicles searching for something that speaks to thier individual"
+        puts "food souls."
+        ui_pause
+        linebreak
+        puts "this (temporarily) ends today"
+        linebreak
+        puts "Use this scraper with any ^^valid Bon Apetit(e?) listicle"
+        puts "and it will pull out all of the crucial pieces of information"
+        puts "which you can then use to populate a shopping list, or just"
+        puts "explore without the additional ads, long-winded anecdotes"
+        puts "or honestly just fluff.... sorry BA..... that often plague"
+        puts "these types of listicles."
+        linebreak
+        ui_pause
+        threebreaks
+        puts "^^Valid articles are normally something theyve tweeted"
+        puts "Look for titles like, these X recipes that make our readers"
+        puts "go OHWOWOWOWOWOWOW SO GOOD, MUCH TAASTTTTTTY"
+        long_pause
     end
 
     def self.print_author_info_menu
         clear_cli
         ui_pause
         threebreaks
+        puts "======================================================"
+        puts "======================================================"
         puts "======================================================"       
         puts "     Bon Ap Listicle Scraper by: Horacio Velvetine    "
         ui_pause
@@ -126,6 +149,8 @@ class Cli
         puts "======================= or ==========================="
         ui_pause
         puts "     Twitter @ https://twitter.com/JamesTi25618261    "
+        puts "======================================================"
+        puts "======================================================"
         puts "======================================================" 
         threebreaks
         long_pause
@@ -148,10 +173,16 @@ class Cli
         linebreak
         puts "                     Now to the good part...                       "
         puts "==================================================================="
-        recipe_list_print(parent_listicle)
+        format_recipe_printer(parent_listicle)
+        puts "==================================================================="
+        puts "==================================================================="
+        linebreak
+        puts "Select from the following options:"
+        puts "1. More Info  2. Make addition to Shopping List  3. See Shopping List"
+        puts "4. Jump to Link/Listicle Input 5. Exit "
+        linebreak
     end
 
-    def self.
 
 
     ######################################### SUB-MENUS ###########################################################
@@ -174,15 +205,6 @@ class Cli
         linebreak
         loading_pause
         linebreak
-    end
-
-    def self.recipe_list_print(parent_listicle)
-        counter = 1
-        parent_listicle.recipes.each do |recipe|
-            
-            puts "#{counter}: #{recipe.title}"
-            counter += 1
-        end
     end
 
     ########################################## FORMATTING #########################################################
@@ -219,6 +241,11 @@ class Cli
         sleep 0.78
     end
 
+    def self.list_pause
+        sleep 0.1
+    end
+
+
     def self.print_invalid_input_message
         linebreak
         puts "=============================================="
@@ -242,9 +269,30 @@ class Cli
         system("exit!")
     end
 
+    def self.make_fun_of_buzzfeed
+        "website"
+    end
+
+
+    ############################################## CUSTOM GETTER METHODS ###########################################################
+
+
+    def self.format_recipe_printer(parent_listicle)
+        counter = 1 
+        parent_listicle.recipe_collection.each do |recipe|
+            puts "#{counter}. #{recipe.title}"
+            counter += 1
+            list_pause
+        end
+
+    end
+
+
+
 
     
  end
+
 
 
 
