@@ -95,7 +95,6 @@ class Cli
     #all of the stored visual representations of each of the various menus
     def self.print_welcome_message
         threebreaks
-        ui_pause
         clear_cli
         ui_pause
         puts "================================================"
@@ -106,7 +105,6 @@ class Cli
         puts "================================================"
         puts "=================== V 0.0.1 ===================="
         threebreaks
-        ui_pause
         puts "================================================"
         puts "             Press any key to continue"
         puts "================================================"

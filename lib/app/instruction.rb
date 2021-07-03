@@ -7,10 +7,9 @@ class Instruction
         @parent = parent_recipe
     end
 
-    def create(text, parent_recipe)
-        new_step = Instruction.new(text)
-        new_step.save
-        parent_recipe.instructions << self
+    def self.create(text, parent_recipe)
+        new_step = Instruction.new(text, parent_recipe)
+        parent_recipe.instructions << new_step
     end
 
 end
