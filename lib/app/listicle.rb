@@ -8,6 +8,11 @@ class Listicle
     def self.all
         @@all
     end
+    
+    def all
+        @@all
+    end
+    
 
     def save
         @@all << self

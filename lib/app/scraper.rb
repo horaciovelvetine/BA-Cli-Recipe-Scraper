@@ -41,11 +41,13 @@ class Scraper
     def self.more_info_scrape(rec_url, parent_recipe)
       
         url = rec_url
-        if url != nil
+        if url != nil || "nil" || false
             html = open(url)
             more_info = Nokogiri::HTML(html)
             rec_rating = more_info.css('.isYfga').text
-            rec_author = more_info.css('.byline__name').css('a').first.text
+            rec_author = "Bon - Apetit"
+            #original line, above is modified
+            # rec_author = more_info.css('.byline__name').css('a').first.text
             rec_servings = more_info.css('.flNKQv').text
             
             parent_recipe.add_more_info(rec_rating, rec_author, rec_servings)

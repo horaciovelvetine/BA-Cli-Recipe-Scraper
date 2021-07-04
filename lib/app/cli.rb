@@ -35,14 +35,14 @@ class Cli
         @link_menu_input = link_menu_input
         case link_menu_input
         when "1"
-            parent_listicle = listicle.all[0]
+            parent_listicle = Listicle.all[0]
             explore_listicle_menu(parent_listicle)
         when "2"
-            parent_listicle = listicle.all[1]
+            parent_listicle = Listicle.all[1]
             explore_listicle_menu(parent_listicle)
 
         when "3"
-            parent_listicle = listicle.all[2]
+            parent_listicle = Listicle.all[2]
             explore_listicle_menu(parent_listicle)
         else 
             link_to_scrape = @link_menu_input
@@ -160,12 +160,15 @@ class Cli
 
     def self.print_previous_listicles
         if Listicle.all.length == 0 
-            puts "There aren't any Listicles to display, input a link and come back later!"
+            puts "    There aren't any Listicles to display," 
+            puts "    input a few links and come back later!"
         else
+            counter = 1
             Listicle.all.each do |listicle|
-                puts "1) #{listicle.all[0].title}"
-                puts "2) #{listicle.all[1].title}"
-                puts "3) #{listicle.all[2].title}"
+                
+                puts "#{counter}) #{listicle.title}"
+                counter += 1
+
             end
         end
     end
@@ -266,12 +269,14 @@ class Cli
         puts "==================================================================="
         puts "                  What you're gonna need:"
         linebreak
-        puts "#{selection.ingredients.join("\n")}"
+        format_ingredients_printer(selection)
+        # puts "#{selection.ingredients.join("\n")}"
         linebreak
         puts "==================================================================="
         puts "                  What you gotta do:"
         linebreak
-        puts "#{selection.instructions.join("\n")}"
+        format_instructions_printer(selection)
+        # puts "#{selection.instructions.join("\n")}"
         linebreak
         puts "==================================================================="
         linebreak
@@ -279,7 +284,6 @@ class Cli
         linebreak
         puts "1) Back to Listicle  2) Add Ingredients to Shopping List"
         puts "3) See Shopping List 4) Jump to Link Input Menu  5) Exit"
-        binding.pry
     end
 
 
@@ -382,6 +386,25 @@ class Cli
         end
 
     end
+
+    def self.format_ingredients_printer(selection)
+        counter = 1 
+        selection.ingredients.each do |ingredient|
+            puts "#{counter}) #{ingredient.name_w_amount}"
+            counter += 1
+            list_pause
+        end
+    end
+
+    def self.format_instructions_printer(selection)
+        counter = 1
+        selection.instructions.each do |step|
+            puts "#{counter}) #{step.print}"
+            counter +=1
+            sleep 0.04
+        end
+    end
+
 
 end
 
