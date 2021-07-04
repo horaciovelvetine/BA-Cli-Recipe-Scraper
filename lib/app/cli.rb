@@ -53,12 +53,16 @@ class Cli
 
     def self.explore_listicle_menu(parent_listicle)
         print_listicle_explore_menu(parent_listicle)
+        
+        binding.pry 
         explore_listicle_menu_selection = gets.strip
 
     
         case explore_listicle_menu_selection
-        when "1" #More Info 
-            display_more_info(parent_listicle)
+        when "1" #More Info on Recipe 
+            # display_more_info(parent_listicle)
+            # more_info_menu()
+
         when "2" #Add recipe to shopping list
             # ask_which_recipe_to_add(parent_listicle)
         when "3" #see shopping list
@@ -77,39 +81,13 @@ class Cli
         
     end
 
-    def self.display_more_info(parent_listicle)
-        print_ask_for_which
-        #getting an int to select a member of an array to operate one
-        recipe_selection = gets.to_i - 1
-        clear_cli
-        print_more_info(parent_listicle, recipe_selection)     
-        more_info_menu_selection = gets.strip
+    def self.more_info_menu
 
-        case more_info_menu_selection
-        when "1" #back to listicle
 
-        when "2" #add ingredients to shopping list
 
-        when "3" #see shopping list
-
-        when "4" #back to link input
-            link_input_menu
-        when "5"
-            exit_app
-        else
-            print_invalid_input_message
-            display_more_info(parent_listicle)
-        end
-        
     end
 
-    def self.shopping_list_menu
-        #displays the current shopping list which may be nil and outputs that information, routes user back to the link inputs menut
 
-
-
-        link_input_menu
-    end
 
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
@@ -125,7 +103,8 @@ class Cli
         linebreak
         puts "================================================"
         puts "=================== V 0.0.1 ===================="
-        threebreaks
+        linebreak
+        linebreak
         puts "================================================"
         puts "             Press any key to continue"
         puts "================================================"
@@ -253,14 +232,10 @@ class Cli
         linebreak
         puts "Select from the following options(1-5):"
         linebreak
-        puts "1) More Info  2) Add Ingredients to Shopping List  3) See Shopping List"
-        puts "4) Jump to Link/Listicle Input 5) Exit"
+        puts "1) More Info  2) Add Ingredients to Shopping List "
+        puts "3) See Shopping List 4) Jump to Link/Listicle Input 5) Exit"
         linebreak
         ui_pause
-    end
-
-    def self.print_ask_for_which
-        puts "~~ Please input the recipe number ~~" 
     end
 
     def self.print_more_info(parent_listicle, selection)
@@ -277,7 +252,7 @@ class Cli
         puts "==================================================================="
         puts "                  What you're gonna need:"
         linebreak
-        binding.pry
+        
         # puts "#{test_recipe.ingredients.join("\n")}"
         linebreak
         puts "==================================================================="
@@ -289,8 +264,8 @@ class Cli
         linebreak
         puts "Select from the following options(1-5):"
         linebreak
-        puts "1) Back to Listicle  2) Add Ingredients to Shopping List  3) See Shopping List"
-        puts "4) Go to Link Input Menu 5) Exit"
+        puts "1) Back to Listicle  2) Add Ingredients to Shopping List"
+        puts "3) See Shopping List 4) Jump to Link/Listicle Input 5) Exit"
         
     end
 

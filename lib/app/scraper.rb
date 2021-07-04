@@ -31,10 +31,10 @@ class Scraper
             rec_blurb = recipe.css('.gallery-slide-caption__dek').text
             rec_url = recipe.css('.external-link').attr("href")
             parent_recipe = Recipe.create(rec_title, rec_blurb, rec_url, parent_listicle)
-
             more_info_scrape(rec_url, parent_recipe)
         end 
         Cli.loading_finish
+        binding.pry
         Cli.explore_listicle_menu(parent_listicle) 
     end
 
