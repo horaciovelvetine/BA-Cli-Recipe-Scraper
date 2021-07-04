@@ -32,15 +32,18 @@ class Cli
         ui_pause
         print_link_input_menu
         link_menu_input = gets.strip
-        @link_menu_input =link_menu_input
+        @link_menu_input = link_menu_input
         case link_menu_input
         when "1"
-            #should look into the listicles list, grab the URL for that the listicle in listicles.all[0] and then pull that link into this function, and then print out that stored listicle item and serve up the interactive_listicle_menu
+            parent_listicle = listicle.all[0]
+            explore_listicle_menu(parent_listicle)
         when "2"
-            #ditto
+            parent_listicle = listicle.all[1]
+            explore_listicle_menu(parent_listicle)
 
         when "3"
-            #ditto
+            parent_listicle = listicle.all[2]
+            explore_listicle_menu(parent_listicle)
         else 
             link_to_scrape = @link_menu_input
             link_scrape_loading_menu
@@ -51,13 +54,15 @@ class Cli
     def self.explore_listicle_menu(parent_listicle)
         print_listicle_explore_menu(parent_listicle)
         explore_listicle_menu_selection = gets.strip
+
+    
         case explore_listicle_menu_selection
         when "1" #More Info 
-            display_more_info_menu(parent_listicle)
+            display_more_info(parent_listicle)
         when "2" #Add recipe to shopping list
-            ask_which_recipe_to_add(parent_listicle)
+            # ask_which_recipe_to_add(parent_listicle)
         when "3" #see shopping list
-            shopping_list_menu
+            # shopping_list_menu
         when "4" #go to top menu
             top_menu
         when "5" #exit app
@@ -72,18 +77,34 @@ class Cli
         
     end
 
-    def self.display_more_info_menu(parent_listicle)
+    def self.display_more_info(parent_listicle)
         print_ask_for_which
         #getting an int to select a member of an array to operate one
-        more_info_menu_selection = gets-1
+        recipe_selection = gets.to_i - 1
         clear_cli
-        print_more_info(parent_listicle, more_info_menu_selection)            
+        print_more_info(parent_listicle, recipe_selection)     
+        more_info_menu_selection = gets.strip
+
+        case more_info_menu_selection
+        when "1" #back to listicle
+
+        when "2" #add ingredients to shopping list
+
+        when "3" #see shopping list
+
+        when "4" #back to link input
+            link_input_menu
+        when "5"
+            exit_app
+        else
+            print_invalid_input_message
+            display_more_info(parent_listicle)
+        end
+        
     end
 
     def self.shopping_list_menu
         #displays the current shopping list which may be nil and outputs that information, routes user back to the link inputs menut
-
-
 
 
 
@@ -135,13 +156,25 @@ class Cli
         puts "======================================================" 
         linebreak
         puts "     Paste your link and hit enter to begin     "
-        puts "                     -or-                       "
-        puts "    Or Select from already previous listicles   "
-        puts "          *coming in verseion 0.1.0             "
+        puts "                      -or-                       "
+        puts "Or Select from already previously scrapedd listicles: "
+        print_previous_listicles
         linebreak
         puts "======================================================"
         puts "======================================================"
         linebreak
+    end
+
+    def self.print_previous_listicles
+        if Listicle.all.length == 0 
+            puts "There aren't any Listicles to display, input a link and come back later!"
+        else
+            Listicle.all.each do |listicle|
+                puts "1) #{listicle.all[0].title}"
+                puts "2) #{listicle.all[1].title}"
+                puts "3) #{listicle.all[2].title}"
+            end
+        end
     end
 
     def self.print_tutorial_menu
@@ -210,30 +243,55 @@ class Cli
         puts parent_listicle.description 
         linebreak
         puts "==================================================================="
-        ui_pause
         linebreak
         puts "                     Now to the good part...                       "
         puts "==================================================================="
         format_recipe_printer(parent_listicle)
+        list_pause
         puts "==================================================================="
         puts "==================================================================="
-        long_pause
         linebreak
-        puts "Select from the following options:"
+        puts "Select from the following options(1-5):"
         linebreak
-        puts "1. More Info  2. Make addition to Shopping List  3. See Shopping List"
-        puts "4. Jump to Link/Listicle Input 5. Exit "
+        puts "1) More Info  2) Add Ingredients to Shopping List  3) See Shopping List"
+        puts "4) Jump to Link/Listicle Input 5) Exit"
         linebreak
-        long_pause
+        ui_pause
     end
 
     def self.print_ask_for_which
-        puts "~~ Please input the recipe number you'd like to address ~~" 
+        puts "~~ Please input the recipe number ~~" 
     end
 
     def self.print_more_info(parent_listicle, selection)
-        get_more_info(parent_listicle, selection)
-        puts "Here lies the menu I have yet to work out really"
+        recipe = parent_listicle.recipe_collection[selection]
+        clear_cli
+        linebreak
+        puts "==================================================================="
+        puts "                  #{recipe.title}"
+        puts "                 By: #{recipe.author}"
+        puts "==================================================================="
+        linebreak
+        puts "#{recipe.blurb}"
+        linebreak
+        puts "==================================================================="
+        puts "                  What you're gonna need:"
+        linebreak
+        binding.pry
+        # puts "#{test_recipe.ingredients.join("\n")}"
+        linebreak
+        puts "==================================================================="
+        puts "                  What you gotta do:"
+        linebreak
+        # puts "#{test_recipe.instructions.join("\n")}"
+        linebreak
+        puts "==================================================================="
+        linebreak
+        puts "Select from the following options(1-5):"
+        linebreak
+        puts "1) Back to Listicle  2) Add Ingredients to Shopping List  3) See Shopping List"
+        puts "4) Go to Link Input Menu 5) Exit"
+        
     end
 
 
@@ -269,8 +327,7 @@ class Cli
     end
 
     def self.loading_pause
-        puts "loading..."
-        sleep 0.5
+        puts "loading... please be patient, this can take a moment!"
     end
 
     def self.loading_finish
@@ -332,24 +389,14 @@ class Cli
     def self.format_recipe_printer(parent_listicle)
         counter = 1 
         parent_listicle.recipe_collection.each do |recipe|
-            puts "#{counter}. #{recipe.title}"
+            puts "#{counter}. #{recipe.title} Rating:(#{recipe.rating})"
             counter += 1
             list_pause
         end
 
     end
 
-    def self.get_more_info(parent_listicle, selection)
-        more_info_link = parent_listicle.recipe_collection(selection).url
-        parent_recipe = parent_listicle.recipe_collection(selection)
-        Scraper.more_info(more_info_link, parent_recipe)
-    
-    end
-
-
-
-    
- end
+end
 
 
 

@@ -53,21 +53,14 @@ class Scraper
             ingredients_scrape(rec_url, parent_recipe)
             # binding.pry
             instruction_scrape(rec_url, parent_recipe)
-            #binding.pry
+            # binding.pry
         else
+            #theres likely a better way to do this, maybe a seperate method?? 
             rec_rating = "Add'l info not availble on this guy, sorry!"
             rec_author ="Add'l info not availble on this guy, sorry!"
             rec_servings = "Add'l info not availble on this guy, sorry!"
             parent_recipe.instructions << "Instructions unavailible, try searching BA directly"
             parent_recipe.ingredients << "Uh oh, looks like you added a recipe to your cart that doesnt have ingredients, sorry about that!"
-            #####This is Probably the wrong spot for this??
-            
-            # Cli.ui_pause
-            # Cli.linebreak
-            # puts "(... it appears BA has been recycling recipes"
-            # puts "from a long time ago, so those older formmated"
-            # puts "articles all have broken links... search BA's"
-            # puts "website explicitly for this information!...)"
         end
         
 
@@ -127,58 +120,10 @@ class Scraper
         more_info = Nokogiri::HTML(html)
         steps = more_info.css('.efQlxQ')
         steps.each do |step|
-            new_step = step.children.text
+            new_step = step.text
             Instruction.create(new_step, parent_recipe)
         end
-        
     end
-
-    # def self.noko_init(url)
-    #     @html = open(url)
-    #     @scraped_info = Nokogiri::HTML(@html)
-    # end
-
 end
-
-
-    # binding.pry
-    
-    #not really yet, because were gonna have to figure out ingredients / steps
-    # Recipe.create(rec_title, rec_blurb, rec_url, parent_listicle)
-    # puts "got here"
-    # binding.pry
-    # Cli.loading_finish
-    # Cli.explore_listicle_menu(parent_listicle) 
-
-
-
-
-
-
-#Attributes to set:
-# rating, total_prep_time, num_servings, author. ingredients[], steps[]
-
-
-
-#classes (as narrow scoped as possible, zoom out + add'l tags??)
-
-#@rating: sc-pNWdM sc-jrsJWt sc-bgPuHN lfZoIg kVXRTs isYfga .text
-
-
-
-#@total_time_to_prepare: sc-pNWdM sc-jrsJWt sc-QBqQR lfZoIg dvVxgI .text
-#@num_of_servings: sc-pNWdM sc-jrsJWt sc-czWueg lfZoIg dvVxgI flNKQv .text
-#@author: sc-pNWdM sc-jrsJWt sc-kEqXSa sc-fxFQKN lfZoIg gbRvFD gXETNs crwdyJ byline__name-link button .text
-
-
-
-#ingredients (sc-fYRKEF kSBiAJ)
-    #amount (sc-pNWdM sc-jrsJWt sc-jHCTGH lfZoIg cKBuBY ipiKWu)
-    #ingredient_name (sc-pNWdM sc-jrsJWt sc-gfPHdM lfZoIg cKBuBY OSpFc)
-
-#instructions (todos: sc-pNWdM sc-cBaREX bSrwjR)
-    #indiv (sc-pNWdM sc-jrsJWt sc-iONbRl lfZoIg cfXWxZ efQlxQ)('p') .text
-
-
 
 
