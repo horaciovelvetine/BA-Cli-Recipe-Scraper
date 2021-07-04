@@ -34,7 +34,7 @@ class Scraper
             more_info_scrape(rec_url, parent_recipe)
         end 
         Cli.loading_finish
-        binding.pry
+        # binding.pry
         Cli.explore_listicle_menu(parent_listicle) 
     end
 

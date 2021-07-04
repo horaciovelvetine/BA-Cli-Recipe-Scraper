@@ -1,7 +1,7 @@
 class Recipe
 
     @@all = []
-    attr_reader :title, :blurb, :url, :parent_listicle, :recipe, :rating, :author, :serves, :ingredients, :instructions
+    attr_reader :title, :blurb, :url, :parent_listicle, :rating, :author, :serves, :ingredients, :instructions
     
 
     #Class

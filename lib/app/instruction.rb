@@ -1,9 +1,9 @@
 class Instruction 
 
-    attr_reader :text, :parent
+    attr_reader :step, :parent
 
     def initialize(new_step, parent_recipe)
-        @text = new_step
+        @step = new_step
         @parent = parent_recipe
     end
 
