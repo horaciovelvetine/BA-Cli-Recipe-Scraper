@@ -32,7 +32,22 @@ class Cli
         ui_pause
         print_link_input_menu
         link_menu_input = gets.strip
-        @link_menu_input = link_menu_input
+        
+        #potential rebuild to make menu system less.... janky
+        #link_menu_int = gets.to_i - 1
+        #case link_menu_input
+        #when link_menu_int < 0
+            #link_to_scrape = link_menu_input
+            #link_scrape_loading_menu
+            #Scraper.scrape_ba_listicle(link_to_scrape)
+        #when link_menu_int < 1
+            #explore_listicle_menu(Listicle.all[link_menu_int])
+        #else 
+            #recovers errored input?
+        #end
+
+
+        #needs rebuilt
         case link_menu_input
         when "1"
             parent_listicle = Listicle.all[0]
@@ -40,12 +55,47 @@ class Cli
         when "2"
             parent_listicle = Listicle.all[1]
             explore_listicle_menu(parent_listicle)
-
         when "3"
             parent_listicle = Listicle.all[2]
             explore_listicle_menu(parent_listicle)
+        when "4"
+            parent_listicle = Listicle.all[3]
+            explore_listicle_menu(parent_listicle)
+        when "5"
+            parent_listicle = Listicle.all[4]
+            explore_listicle_menu(parent_listicle)
+        when "6"
+            parent_listicle = Listicle.all[5]
+            explore_listicle_menu(parent_listicle)
+        when "7"
+            parent_listicle = Listicle.all[6]
+            explore_listicle_menu(parent_listicle)
+        when "8"
+            parent_listicle = Listicle.all[7]
+            explore_listicle_menu(parent_listicle)
+        when "9"
+            parent_listicle = Listicle.all[8]
+            explore_listicle_menu(parent_listicle)
+        when "10"
+            parent_listicle = Listicle.all[9]
+            explore_listicle_menu(parent_listicle)
+        when "11"
+            parent_listicle = Listicle.all[10]
+            explore_listicle_menu(parent_listicle)
+        when "12"
+            parent_listicle = Listicle.all[11]
+            explore_listicle_menu(parent_listicle)
+        when "13"
+            parent_listicle = Listicle.all[12]
+            explore_listicle_menu(parent_listicle)
+        when "14"
+            parent_listicle = Listicle.all[13]
+            explore_listicle_menu(parent_listicle)
+        when "15"
+            parent_listicle = Listicle.all[14]
+            explore_listicle_menu(parent_listicle)
         else 
-            link_to_scrape = @link_menu_input
+            link_to_scrape = link_menu_input
             link_scrape_loading_menu
             Scraper.scrape_ba_listicle(link_to_scrape)
         end
@@ -190,6 +240,7 @@ class Cli
         puts "     Paste your link and hit enter to begin     "
         puts "                      -or-                       "
         puts "Or Select from already previously scrapedd listicles: "
+        linebreak
         print_previous_listicles
         linebreak
         puts "======================================================"
@@ -199,8 +250,8 @@ class Cli
 
     def self.print_previous_listicles
         if Listicle.all.length == 0 
-            puts "    There aren't any Listicles to display," 
-            puts "    input a few links and come back later!"
+            puts "      There aren't any Listicles to display," 
+            puts "      input a few links and come back later!"
         else
             counter = 1
             Listicle.all.each do |listicle|
