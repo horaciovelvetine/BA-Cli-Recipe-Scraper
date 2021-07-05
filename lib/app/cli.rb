@@ -52,19 +52,23 @@ class Cli
     end
 
     def self.explore_listicle_menu(parent_listicle)
+        clear_cli
         print_listicle_explore_menu(parent_listicle) 
         explore_listicle_menu_selection = gets.strip
         case explore_listicle_menu_selection
         when "1" #More Info on Recipe
             puts "Which recipe(#) would you like to explore:"
-            recipe_selection =gets.strip.to_i - 1
+            recipe_selection = gets.strip.to_i - 1
             more_info_menu(parent_listicle, recipe_selection)
-            # more_info_menu()
-
         when "2" #Add recipe to shopping list
-            # ask_which_recipe_to_add(parent_listicle)
+           puts "Which recipe's(#) ingredients would you like to add?"
+           add_to_list_selection = gets.strip.to_i - 1
+           ingredients = parent_listicle.recipe_collection[add_to_list_selection].ingredients
+           Shopping_List.add_ingredients_array(ingredients)
+           display_shopping_list_menu(parent_listicle)
+        #    add_ingredients_array(parent_listicle, add_to_list_selection)
         when "3" #see shopping list
-            # shopping_list_menu
+            display_shopping_list_menu(parent_listicle)
         when "4" #go to top menu
             top_menu
         when "5" #exit app
@@ -80,15 +84,18 @@ class Cli
     end
 
     def self.more_info_menu(parent_listicle, recipe_selection)
+        clear_cli
         print_more_info(parent_listicle, recipe_selection)
         more_info_menu_selection = gets.strip
         case more_info_menu_selection
         when "1" #back to listicle
             explore_listicle_menu(parent_listicle)
         when "2" #add ingred to shopping list
-        
+            ingredients = parent_listicle.recipe_collection[recipe_selection].ingredients
+            Shopping_List.add_ingredients_array(ingredients)
+            display_shopping_list_menu(parent_listicle)
         when "3" #see shopping list
-        
+            display_shopping_list_menu(parent_listicle)
         when "4" #jump to link menu
             link_input_menu
         when "5"
@@ -101,7 +108,39 @@ class Cli
 
     end
 
+    def self.display_shopping_list_menu(parent_listicle="none")
+        clear_cli
+        print_shopping_list
+        shopping_list_selection = gets.strip
+        
+        case shopping_list_selection
+        when "1" #back to listicle
+            if parent_listicle != "none"
+                link_input_menu
+            else
+                explore_listicle_menu(parent_listicle)
+            end
+        when "2" #back to input
+            link_input_menu
+        when "3" #im lost, take me home
+            top_menu
+        when "4" #whoops, actually wanted to scrape something again w/0 screen
+            puts "Please paste the (valid!) link you wish to scrape:"
+            link_to_scrape = gets.strip
+            clear_cli
+            linebreak
+            loading_pause
+            Scraper.scrape_ba_listicle(link_to_scrape)
+            loading_finish
+        when "5"
+            exit_app
+        else 
+            print_invalid_input_message
+            display_shopping_list_menu(parent_listicle)
+        end
 
+        
+    end
 
     
     ####################################### PRINTED / FORMATTING METHODS ##########################################
@@ -286,7 +325,27 @@ class Cli
         puts "3) See Shopping List 4) Jump to Link Input Menu  5) Exit"
     end
 
-
+    def self.print_shopping_list
+        linebreak
+        clear_cli
+        linebreak
+        ui_pause
+        puts "===================== Shopping List Menu =========================="
+        puts "==================================================================="
+        linebreak
+        if Shopping_List.list.length == 0
+            puts "This Shopping List is empty, go pick some recipes and come on back!"
+        else
+            format_shopping_list_printer
+        end
+        linebreak
+        puts "==================================================================="
+        linebreak
+        puts "Select from the following options(1-5):"
+        linebreak
+        puts "1) Back to Listicle  2) Back to Link Input/Listicle Menu"
+        puts "3) Top Menu 4) Input Scrapeable Link  5) Exit"
+    end
 
     ######################################### SUB-MENUS ###########################################################
      #automatically returns user to top menu/next menu #
@@ -404,6 +463,16 @@ class Cli
             sleep 0.04
         end
     end
+
+    def self.format_shopping_list_printer
+       counter = 1
+        Shopping_List.list.each do |ingred_w_quantity|
+            puts " #{counter}) #{ingred_w_quantity.name_w_amount}"
+            list_pause
+            counter += 1
+        end
+    end
+
 
 
 end

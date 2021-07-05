@@ -18,7 +18,7 @@ class Recipe
         @blurb = rec_blurb
         @url = rec_url
         @parent_listicle = parent_listicle
-        @rating = "rec_rating"
+        @rating = "Unavailible"
         @author = "rec_author"
         @serves = "rec_servings"
         @ingredients = []
@@ -32,7 +32,7 @@ class Recipe
         recipe
     end
 
-    def add_more_info(rec_rating, rec_author, rec_servings)
+    def add_more_info(rec_rating="Unavailible", rec_author, rec_servings)
         @rating = rec_rating
         @author = rec_author
         @serves = rec_servings
@@ -41,3 +41,5 @@ class Recipe
 
 
 end
+
+#V0.0.1 Fin

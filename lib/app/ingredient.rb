@@ -28,6 +28,6 @@ class Ingredient
         @@all << self
     end
     
-
-    
 end
+
+#V0.0.1 Fin
