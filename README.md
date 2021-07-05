@@ -44,4 +44,5 @@ The lil web scraper is available as open source under the terms of the [MIT Lice
     5. Refactor link input menu to print X number (or all) of the previous listicles instead of the last 15
     6. General Reformatting to make CLI reading less brutal. 
     7. build a redundency checker into scraper so not storing duplicates of recipes.
+    8. add shopping list to top menu
     
