@@ -44,7 +44,7 @@ class Scraper
         if url != nil || "nil" || false
             html = open(url)
             more_info = Nokogiri::HTML(html)
-            rec_rating = more_info.css('.isYfga').text
+            rec_rating = more_info.css('.dXXEDb').text
             rec_author = "Bon - Apetit"
             #original line, above is modified
             # rec_author = more_info.css('.byline__name').css('a').first.text
@@ -77,15 +77,15 @@ class Scraper
         url = rec_url
         html = open(url)
         more_info = Nokogiri::HTML(html)
-        ingredients_w_amounts = more_info.css('.recipe__ingredient-list')
+        ingredients_w_amounts = more_info.css('.yfmkH')
 
-        just_amounts = ingredients_w_amounts.css('.ipiKWu')
+        just_amounts = ingredients_w_amounts.css('.bSgTqg')
         just_amounts.each do |amnt|
             amount = amnt.children.text
             amounts << amount
         end
 
-        just_names = ingredients_w_amounts.css('.OSpFc') 
+        just_names = ingredients_w_amounts.css('.bXTIbQ') 
         just_names.each do |name|
             name = name.children.text
             names << name
@@ -120,7 +120,7 @@ class Scraper
         url = rec_url
         html = open(url)
         more_info = Nokogiri::HTML(html)
-        steps = more_info.css('.efQlxQ')
+        steps = more_info.css('.jDPTbB')
         steps.each do |step|
             new_step = step.text
             Instruction.create(new_step, parent_recipe)
