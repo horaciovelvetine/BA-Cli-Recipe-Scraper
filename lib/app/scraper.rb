@@ -2,8 +2,6 @@ require_relative "../../config/environment"
 
 class Scraper
     
-
-
     #--The initial scrape which parses out the listicle @ the 1st level--#
     def self.scrape_ba_listicle(link_to_scrape)
         url = link_to_scrape
@@ -73,10 +71,7 @@ class Scraper
         
         amounts = []
         names = []
-        # url = rec_url
-        # html = open(url)
-        # more_info= Nokogiri::HTML(html)
-        
+
         ingredients_w_amounts = more_info.css('.biNOUj')
 
         just_amounts = ingredients_w_amounts.css('.yfmkH')
@@ -125,6 +120,5 @@ class Scraper
     end
 end
 
-#V0.0.1 Fin
 
 
