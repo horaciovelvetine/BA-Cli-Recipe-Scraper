@@ -52,9 +52,9 @@ class Scraper
             
             parent_recipe.add_more_info(rec_rating, rec_author, rec_servings)
             #binding.pry
-            ingredients_scrape(rec_url, parent_recipe)
+            ingredients_scrape(more_info, parent_recipe)
             # binding.pry
-            instruction_scrape(rec_url, parent_recipe)
+            instruction_scrape(more_info, parent_recipe)
             # binding.pry
         else
             #theres likely a better way to do this, maybe a seperate method?? 
@@ -69,14 +69,14 @@ class Scraper
 
     end
 
-    def self.ingredients_scrape(rec_url, parent_recipe)
+    def self.ingredients_scrape(more_info, parent_recipe)
         
         amounts = []
         names = []
-
-        url = rec_url
-        html = open(url)
-        more_info = Nokogiri::HTML(html)
+        # url = rec_url
+        # html = open(url)
+        # more_info= Nokogiri::HTML(html)
+        
         ingredients_w_amounts = more_info.css('.biNOUj')
 
         just_amounts = ingredients_w_amounts.css('.yfmkH')
@@ -115,11 +115,8 @@ class Scraper
         Ingredient.create_by_array(ingreds_w_amounts, parent_recipe)
     end
 
-    def self.instruction_scrape(rec_url, parent_recipe)
-    
-        url = rec_url
-        html = open(url)
-        more_info = Nokogiri::HTML(html)
+    def self.instruction_scrape(more_info, parent_recipe)
+
         steps = more_info.css('.bSrwjR')
         steps.each do |step|
             new_step = step.text

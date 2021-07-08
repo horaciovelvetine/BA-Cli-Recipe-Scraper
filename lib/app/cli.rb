@@ -103,7 +103,7 @@ class Cli
 
     def self.explore_listicle_menu(parent_listicle)
         clear_cli
-        print_listicle_explore_menu(parent_listicle) 
+        print_listicle_explore_menu(parent_listicle, parent_listicle.recipe_collection) 
         explore_listicle_menu_selection = gets.strip
         case explore_listicle_menu_selection
         when "1" #More Info on Recipe
@@ -126,6 +126,14 @@ class Cli
         when "6" #hidden hackers menu
             puts "welcome to the thunderdome"
             exit_app
+        when "7" #print sorted version of listicle
+            # binding.pry
+            recipes = parent_listicle.recipe_collection.sort_by {|recipe| recipe.rating}.reverse
+            print_listicle_explore_menu(parent_listicle, recipes)
+            puts "Hit enter to unsort!"
+            wait_for_input = gets.strip
+            explore_listicle_menu(parent_listicle)
+
         else
             print_invalid_input_message
             explore_listicle_menu(parent_listicle)
@@ -317,7 +325,7 @@ class Cli
         long_pause
     end
 
-    def self.print_listicle_explore_menu(parent_listicle)
+    def self.print_listicle_explore_menu(parent_listicle, recipes)
         clear_cli
         threebreaks
         puts "==================================================================="
@@ -332,7 +340,7 @@ class Cli
         linebreak
         puts "                     Now to the good part...                       "
         puts "==================================================================="
-        format_recipe_printer(parent_listicle)
+        format_recipe_printer(recipes)
         list_pause
         puts "==================================================================="
         puts "==================================================================="
@@ -340,7 +348,8 @@ class Cli
         puts "Select from the following options(1-5):"
         linebreak
         puts "1) More Info  2) Add Ingredients to Shopping List "
-        puts "3) See Shopping List 4) Jump to Link/Listicle Input 5) Exit"
+        puts "3) See Shopping List 4) Jump to Link/Listicle Input 5) Exit" 
+        puts "7) the Dustin"
         linebreak
         ui_pause
     end
@@ -487,9 +496,10 @@ class Cli
     ############################################## CUSTOM GETTER METHODS ###########################################################
 
 
-    def self.format_recipe_printer(parent_listicle)
+    def self.format_recipe_printer(recipes)
         counter = 1 
-        parent_listicle.recipe_collection.each do |recipe|
+        # parent_listicle.recipe_collection.sort {|a, b| b.rating <=> a.rating}.each do |recipe|
+       recipes.each do |recipe| 
             puts "#{counter}. #{recipe.title} Rating:(#{recipe.rating})"
             counter += 1
             list_pause

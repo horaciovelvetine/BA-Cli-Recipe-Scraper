@@ -1,7 +1,7 @@
 class Listicle
 
     @@all = []
-    attr_accessor :title, :description, :recipe_collection, :recipe
+    attr_accessor :title, :description, :recipe_collection
 
 
     #Class
