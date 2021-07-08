@@ -77,15 +77,15 @@ class Scraper
         url = rec_url
         html = open(url)
         more_info = Nokogiri::HTML(html)
-        ingredients_w_amounts = more_info.css('.yfmkH')
+        ingredients_w_amounts = more_info.css('.biNOUj')
 
-        just_amounts = ingredients_w_amounts.css('.bSgTqg')
+        just_amounts = ingredients_w_amounts.css('.yfmkH')
         just_amounts.each do |amnt|
             amount = amnt.children.text
             amounts << amount
         end
 
-        just_names = ingredients_w_amounts.css('.bXTIbQ') 
+        just_names = ingredients_w_amounts.css('.lfQJwg') 
         just_names.each do |name|
             name = name.children.text
             names << name
@@ -120,7 +120,7 @@ class Scraper
         url = rec_url
         html = open(url)
         more_info = Nokogiri::HTML(html)
-        steps = more_info.css('.jDPTbB')
+        steps = more_info.css('.bSrwjR')
         steps.each do |step|
             new_step = step.text
             Instruction.create(new_step, parent_recipe)
