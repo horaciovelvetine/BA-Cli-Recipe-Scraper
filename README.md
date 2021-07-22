@@ -47,6 +47,5 @@ The lil web scraper is available as open source under the terms of the [MIT Lice
     8. add shopping list to top menu
     9. iron out various variable names (i.e. rec_url) which is repeating itself in its name.
     10. Fix bad code sandwiches: methods that are suffixed with a common term (i.e print_welcome_message into Print.welcome_message?).
-    11. Reduce calls to BA down to 2 in scraper. 
     
     
