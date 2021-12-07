@@ -133,6 +133,12 @@ class Cli
             puts "Hit enter to unsort!"
             wait_for_input = gets.strip
             explore_listicle_menu(parent_listicle)
+        when "8" #displays all the recipes with a rating of 4.0 or greater
+            recipes = parent_listicle.recipe_collection.select {|recipe| recipe.rating.to_i >= 4}
+            print_listicle_explore_menu(parent_listicle, recipes)
+            puts "Did we make it pa???"
+            binding.pry
+            explore_listicle_menu(parent_listicle)
 
         else
             print_invalid_input_message

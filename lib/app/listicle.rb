@@ -7,12 +7,7 @@ class Listicle
     #Class
     def self.all
         @@all
-    end
-    
-    def all
-        @@all
-    end
-    
+    end 
 
     def save
         @@all << self

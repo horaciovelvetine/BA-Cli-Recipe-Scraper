@@ -20,7 +20,7 @@ The lil web scraper is available as open source under the terms of the [MIT Lice
     1. https://www.bonappetit.com/recipes/desserts/slideshow/4th-of-july-desserts
     2. https://www.bonappetit.com/gallery/fourth-of-july-staff-recipes-2021
     3. https://www.bonappetit.com/gallery/30-healthy-keto-recipes (slug is different than actual article???)
-    4. https://www.bonappetit.com/gallery/healthy-egg-recipes
+    4.https://www.bonappetit.com/gallery/healthy-egg-recipes
     5. https://www.bonappetit.com/gallery/best-scallop-recipes
     6. https://www.bonappetit.com/gallery/healthy-pasta-and-noodle-recipes
     7. https://www.bonappetit.com/gallery/ba-readers-keepers-favorite-recipes
