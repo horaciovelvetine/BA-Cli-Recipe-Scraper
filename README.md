@@ -18,6 +18,21 @@
     SHOULD:
     1) Plugin to Bookmarkr portion of the website fairly easily and be able to be used to scrape a bookmark and pull out the HTML. 
     2) Should have a variety of plugins which use that HTML and known variable declerations on pages to pull out addressable // needed elements of that page for use in further use.
+    3) Should begin including testing framework with the intended future goal of making this a "gem" Imported into the main repository, for now will simply be a means of developing quickly locally and testing. 
+
+## Learning Goals:: 
+
+1) Learn about release cycle of tech
+2) Learn about gems & understand that system of importing/exporting (which I now understand is NPM on the JS side) 
+3) Learn about writing and creating unit tests for code using a testing library
+
+
+## To Do's :: 
+1) Get comfy again 
+2) Pick testing framework & Learn said framework
+3) Begin seperating out and objecting/abstracing/refactoring
+4) Establish goals for functionalities 
+5) establish convention for including site specific variables which care adjusted
 
 
 ## Contributing
