@@ -1,6 +1,6 @@
 ## Information:: 
 
-    This repository is currently undergoing a transition from my first app, to being a reference repository to becoming a plugin for my portfolio website//final. The original version was a very simple application built to scrape Bon Apetit Listicles so you could make a shiopping list. This is intended to be a smaller component of a larger bookmarking system Im currently working on building for myself as a webapp. This will still be used in no small part to pull articles, just not neccasarily only from Bon Ap. 
+This repository is currently undergoing a transition from my first app, to being a reference repository to becoming a plugin for my portfolio website//final. The original version was a very simple application built to scrape Bon Apetit Listicles so you could make a shiopping list. This is intended to be a smaller component of a larger bookmarking system Im currently working on building for myself as a webapp. This will still be used in no small part to pull articles, just not neccasarily only from Bon Ap. 
 
 
 ## Usage::
